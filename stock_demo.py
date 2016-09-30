@@ -19,8 +19,8 @@ def main(sc):
     # 指定用于计算县四度的分钟线长度
     # minute_bar_length = 90  # 9：30 - 11：00
     # minute_bar_length_share = sc.broadcast(minute_bar_length)
-    line_data = rdd_mkt_data.filter(lambda x: target_line in x[0]).take(10)
-    print line_data
+    line_data = rdd_mkt_data.filter(lambda x: target_line in x[0]).take(1)
+    print "Result",line_data
     # target_line_share = sc.broadcast(target_line_mkt_data)
 
 
