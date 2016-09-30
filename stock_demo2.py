@@ -73,26 +73,27 @@ def draw_similarity(target_line,
         columns.append(line_id)
     res['fitting'] = res[columns].sum(axis=1) / len(columns)
     res['target_line'] = target_line_mkt_data.ratio
-
+    res.to_csv("res.csv", encoding='utf-8')
     # plot
-    ax = res.plot(x='minute', y=columns, figsize=(20, 13),
-                  legend=False, title=u'Minute Bar Prediction')
-    res.plot(y=['target_line'], ax=ax, linewidth=5, style='.b')
-    res.plot(y=['fitting'], ax=ax, linewidth=4, style='-y')
-    ax.vlines(x=minute_bar_length, ymin=-0.02, ymax=0.02,
-              linestyles='dashed')
-    ax.set_axis_bgcolor('white')
-    ax.grid(color='gray', alpha=0.2, axis='y')
+    # ax = res.plot(x='minute', y=columns, figsize=(20, 13),
+    #               legend=False, title=u'Minute Bar Prediction')
+    # res.plot(y=['target_line'], ax=ax, linewidth=5, style='.b')
+    # res.plot(y=['fitting'], ax=ax, linewidth=4, style='-y')
+    # ax.vlines(x=minute_bar_length, ymin=-0.02, ymax=0.02,
+    #           linestyles='dashed')
+    # ax.set_axis_bgcolor('white')
+    # ax.grid(color='gray', alpha=0.2, axis='y')
 
-    # plot area
-    avg_line = res['fitting']
-    avg_line = list(avg_line)[minute_bar_length:]
-    for line in columns:
-        predict_line = res[line]
-        predict_line = list(predict_line)[minute_bar_length:]
-        ax.fill_between(range(minute_bar_length, 241), avg_line,
-                        predict_line, alpha=0.1, color='r')
-    return res, ax
+    # # plot area
+    # avg_line = res['fitting']
+    # avg_line = list(avg_line)[minute_bar_length:]
+    # for line in columns:
+    #     predict_line = res[line]
+    #     predict_line = list(predict_line)[minute_bar_length:]
+    #     ax.fill_between(range(minute_bar_length, 241), avg_line,
+    #                     predict_line, alpha=0.1, color='r')
+    # return res, ax
+    return res, True
 
 
 # Main Functionality
