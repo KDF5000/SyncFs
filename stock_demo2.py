@@ -53,7 +53,7 @@ def get_similary_line(similarity_data):
         for x in rdd_lines
     }
     similar_line = {
-        x: similar_line[x].sort(by=['barTime'], ascending=True)
+        x: similar_line[x].sort(columns=['barTime'], ascending=True)
         for x in similar_line
     }
 
@@ -114,7 +114,7 @@ line_data = rdd_mkt_data.filter(lambda x: target_line in x[0]).collect()
 # line_data [(filename, data),(file,name),...]
 target_line_mkt_data = pd.DataFrame.from_dict(json.loads(line_data[0][1]))
 target_line_mkt_data.sort(
-    by=['barTime'],
+    columns=['barTime'],
     ascending=True, inplace=True
 )
 target_line_share = sc.broadcast(target_line_mkt_data)
